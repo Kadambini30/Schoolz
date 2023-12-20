@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // Enable JSX syntax for both .jsx and .js files
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules" // Optional: If you're using CSS modules
+      },
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.jsx",
+    "**/*.js" // Include .js files for Tailwind CSS in JS files
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
