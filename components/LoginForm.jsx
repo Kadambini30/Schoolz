@@ -6,22 +6,22 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 const LoginForm = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await signIn("Credentials", {
-        username,
+      const res = await signIn("credentials", {
+        email,
         password,
         redirect:false
       })
       if(res.error){
         setError("Invalid credentials");
       }
-      router.replace(`/studentLogin/${username}/account`);
+      router.replace(`/studentLogin/abra/account`);
     }
     catch(error){
       setError("Invalid credentials");
@@ -37,7 +37,7 @@ const LoginForm = () => {
             type="text"
             placeholder="Username"
             className="p-2 border-2 rounded-md border-gray-400 outline-none"
-            onChange={(e)=>{setUsername(e.target.value)}}
+            onChange={(e)=>{setEmail(e.target.value)}}
           />
           <input
             type="password"

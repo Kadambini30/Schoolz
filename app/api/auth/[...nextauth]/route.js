@@ -1,7 +1,10 @@
 import NextAuth from "next-auth/next";
 import  CredentialsProvider  from "next-auth/providers/credentials";
+import { connect } from "../../../../lib/db";
+import studentuser from "../../../../lib/model/studentuser";
+import bcrypt from "bcryptjs";
 
-const authOptions = {
+export const authOptions = {
     providers:[
         CredentialsProvider({
             name: "credentials",
@@ -9,8 +12,25 @@ const authOptions = {
 
             },
             async authorize(credentials){
-                const user = {id: "1"};
-                return user;
+                const {email, password} = credentials;
+                try{
+                    await connect();
+                    const user = await studentuser.findOne({email:email});
+                    if(!user){
+                        throw new Error("No user found");
+                        return null;
+                    }
+                    const passwordMatch = await bcrypt.compare(password, user.password);
+
+                    if(!passwordMatch){
+                        throw new Error("Incorrect password");
+                        return null;
+                    }
+                    return user
+                }
+                catch(err){
+                    console.log(err);
+                }
             }
         })
     ],
