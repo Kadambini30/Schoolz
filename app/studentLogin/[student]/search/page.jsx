@@ -45,26 +45,23 @@ function page() {
       <div>
         {filteredPeople.map((person, index) => (
           <Link
-                                href={{
-                                    pathname: `/student/teacherProfile/${person._id}`,
-                                    query: {
-                                        teachers: person._id
-                                    }
-                                }}
-                                key={index}
-                            >
-                                <div className="p-10 m-10 outline">
-                                    <h3>{person.name}</h3>
-                                    <p>{person.subject}</p>
-                                    <p>{person.address}</p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            );
-
-
-                            }
+            href={{
+              pathname: `/student/teacherProfile/${person._id}`,
+              query: {
+                teachers: person._id,
+              },
+            }}
+            key={index}
+          >
+            <div className="p-10 m-10 outline">
+              <h3>{person.name}</h3>
+              <p>{person.subject}</p>
+              <p>{person.address}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 export default page;
-

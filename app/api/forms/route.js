@@ -24,3 +24,4 @@ export async function POST(request) {
     console.log(data);
     return NextResponse.json({data, success: true });
 }
+
