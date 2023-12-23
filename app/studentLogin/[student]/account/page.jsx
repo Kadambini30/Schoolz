@@ -10,6 +10,7 @@ const Page = () => {
   return (
     <div className='text-center p-10 outline justify-center flex flex-col m-40'>
       <h1>Welcome, {session?.user?.name}!</h1>
+      <p>id {session?.user?._id}</p>
       <p>Email: {session?.user?.email}</p>
       <button onClick={()=>signOut()} className='bg-red-700 text-white w-32 p-4 mx-auto font-bold'>Logout</button>
     </div>

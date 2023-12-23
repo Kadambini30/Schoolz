@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-function page() {
+function page({params}){
   const [searchTerm, setSearchTerm] = useState("");
   const [searchDistance, setSearchDistance] = useState(null);
   const [teachers, setTeachers] = useState([]);
@@ -46,7 +46,7 @@ function page() {
         {filteredPeople.map((person, index) => (
           <Link
             href={{
-              pathname: `/student/teacherProfile/${person._id}`,
+              pathname: `/studentLogin/${params.student}/teacherProfile/${person._id}`,
               query: {
                 teachers: person._id,
               },
