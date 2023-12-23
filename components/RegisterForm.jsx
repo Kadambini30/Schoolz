@@ -11,6 +11,8 @@ function RegisterForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, seterror ] = useState('');
+    const [course, setCourse] = useState([]);
+    console.log({course});
     const router = useRouter();
     const handleSubmit = async(e) => {
         console.log("Submitted");
@@ -40,7 +42,7 @@ function RegisterForm() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ name, email, password })
+                body: JSON.stringify({ name, email, password,course})
             });
             if (res.ok) {
                 const form = e.target;

@@ -1,44 +1,103 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { set } from "mongoose";
 
+let presenturl= "";
+// function Page({params}) {
+//     presenturl = `http://localhost:3000/studentLogin/${params.student}`
+//   const [carouselData, setCarouselData] = useState([]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await fetch(`http://localhost:3000/api/studentregister/${params.student}`);
+//         const data = await response.json();
+//         console.log("this is course");
+//         console.log(data.result.course);
 
-function Page({params}) {
-    console.log(params.student)
-    const presenturl = `http://localhost:3000/studentLogin/${params.student}/`
-    console.log(presenturl)
-  const carouselData = [
-    {
-      imageAddress: "/khanSir.jpeg",
-      name: "Khan sir",
-      description: "Description 1",
-      userid: "khan",
-    },
-    {
-      imageAddress: "/physicsWallah.jpeg",
-      name: "Alakh Pandey",
-      description: "Description 2",
-      userid: "pw",
-    },
-    {
-      imageAddress: "/shraddha.jpeg",
-      name: "Shraddha Khapra",
-      description: "Description 3",
-      userid: "aman",
-    },
-  ];
+//         // Fetch details of enrolled teacher courses
+//         const teacherCourses = data.result.course;
+//         console.log("Enrolled Teacher Courses:");
+//         console.log(teacherCourses)
+        
+//         // const teacherCourseDetails = await Promise.all(
+//         //   teacherCourses.map(async (teacherCourses) => {
+//         //     const teacherResponse = await fetch(`http://localhost:3000/api/forms/${teacherCourses[0]}`);
+//         //     const teacherData = await teacherResponse.json();
+//         //     return {
+//         //       name: teacherData.name,
+//         //       subject: teacherData.subject
+//         //     };
+//         //   })
+//         // );
+
+//         // console.log("Enrolled Teacher Course Details:");
+//         // console.log(teacherCourseDetails);
+
+//         // setCarouselData(data.result.course);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     };
+//       fetchData();
+//     },[params.student])
+function Page({ params }) {
+   presenturl = `http://localhost:3000/studentLogin/${params.student}`;
+  const [carouselData, setCarouselData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/studentregister/${params.student}`
+        );
+        const data = await response.json();
+
+        // Fetch details of enrolled teacher courses
+        const teacherCourses = data.result.course;
+        console.log("Enrolled Teacher Courses:");
+        console.log(teacherCourses);
+        // Fetch details for each teacher using the _id values
+        const teacherCourseDetails = await Promise.all(
+          teacherCourses.map(async (teacherId) => {
+            console.log(teacherId);
+            const teacherResponse = await fetch(
+              `http://localhost:3000/api/forms/${teacherId}`
+            );
+            const teacherData = await teacherResponse.json();
+            console.log(teacherData.result);
+            return {
+              id: teacherId,
+              name: teacherData.result.name,
+              subject: teacherData.result.subject,
+              // You can include other fields as needed
+            };
+          })
+        );
+
+        // Update the carouselData state with the fetched details
+        setCarouselData(teacherCourseDetails);
+        console.log(carouselData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    console.log(carouselData);
+
+    fetchData();
+  }, [params.student]);
+
   return (
     <main className="">
       {/* student navbar */}
       <div className="flex bg-[#c6f0f5] justify-end p-4">
-        <Link href={`${presenturl}/account`}className="">
+        <Link href={`/studentLogin/account`}className="">
           Account
         </Link>
       </div>
       {/* enrolled carousel */}
-      <div className="flex flex-row items-center h-[40vh] overflow-y-hidden">
+      <div className="flex flex-row items-center h-[40vh] overflow-y-hidden ">
         {carouselData.map((item, index) => (
           <Link
             href={{
@@ -50,7 +109,7 @@ function Page({params}) {
             }}
             key={index}
           >
-            <div className="flex flex-col p-10 items-center hover:scale-105 transition duration-300 ease-in-out">
+            <div className="flex flex-col p-10 items-center hover:scale-105 transition duration-300 ease-in-out bg-red-200 px-10 mx-10">
               <Image
                 src={item.imageAddress}
                 alt={item.name}
@@ -87,3 +146,6 @@ function Page({params}) {
 }
 
 export default Page;
+
+
+export {presenturl}

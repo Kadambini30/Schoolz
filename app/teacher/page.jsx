@@ -38,10 +38,6 @@ function Page() {
         router.push('/teacher/submitpage');
     };
 
-    useEffect(() => {
-        // Add any side effect logic here
-    }, []);
-
     return (
         <form className='flex flex-col text-center p-10 outline-dashed m-10 w-60' onSubmit={handleSubmit}>
             <label>

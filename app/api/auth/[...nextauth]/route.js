@@ -13,22 +13,22 @@ export const authOptions = {
             },
             async authorize(credentials){
                 const {email, password} = credentials;
-                try{
+                try {
                     await connect();
-                    const user = await studentuser.findOne({email:email});
-                    if(!user){
+                    const user = await studentuser.findOne({ email: email });
+                    console.log(user);
+                    if (!user) {
                         throw new Error("No user found");
                         return null;
                     }
                     const passwordMatch = await bcrypt.compare(password, user.password);
 
-                    if(!passwordMatch){
+                    if (!passwordMatch) {
                         throw new Error("Incorrect password");
                         return null;
                     }
-                    return user
-                }
-                catch(err){
+                    return user;
+                } catch (err) {
                     console.log(err);
                 }
             }

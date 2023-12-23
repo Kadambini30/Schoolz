@@ -21,8 +21,9 @@ const LoginForm = () => {
       if(res.error){
         setError("Invalid credentials");
       }
-      router.replace(`/studentLogin/${email}/`);
-    }
+      else
+{      router.replace(`/studentLogin/${email}/`);
+}    }
     catch(error){
       setError("Invalid credentials");
     }
