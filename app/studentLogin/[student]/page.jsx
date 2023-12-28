@@ -2,46 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { set } from "mongoose";
 
 let presenturl= "";
-// function Page({params}) {
-//     presenturl = `http://localhost:3000/studentLogin/${params.student}`
-//   const [carouselData, setCarouselData] = useState([]);
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch(`http://localhost:3000/api/studentregister/${params.student}`);
-//         const data = await response.json();
-//         console.log("this is course");
-//         console.log(data.result.course);
-
-//         // Fetch details of enrolled teacher courses
-//         const teacherCourses = data.result.course;
-//         console.log("Enrolled Teacher Courses:");
-//         console.log(teacherCourses)
-        
-//         // const teacherCourseDetails = await Promise.all(
-//         //   teacherCourses.map(async (teacherCourses) => {
-//         //     const teacherResponse = await fetch(`http://localhost:3000/api/forms/${teacherCourses[0]}`);
-//         //     const teacherData = await teacherResponse.json();
-//         //     return {
-//         //       name: teacherData.name,
-//         //       subject: teacherData.subject
-//         //     };
-//         //   })
-//         // );
-
-//         // console.log("Enrolled Teacher Course Details:");
-//         // console.log(teacherCourseDetails);
-
-//         // setCarouselData(data.result.course);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//       fetchData();
-//     },[params.student])
 function Page({ params }) {
    presenturl = `http://localhost:3000/studentLogin/${params.student}`;
   const [carouselData, setCarouselData] = useState([]);
@@ -97,6 +59,7 @@ function Page({ params }) {
         </Link>
       </div>
       {/* enrolled carousel */}
+      {carouselData.length > 0 && (
       <div className="flex flex-row items-center h-[40vh] overflow-y-hidden ">
         {carouselData.map((item, index) => (
           <Link
@@ -123,6 +86,7 @@ function Page({ params }) {
           </Link>
         ))}
       </div>
+      )}
       {/* video analyser */}
       <Link href={`${presenturl}/checkyoulearn`}>
         <button className="bg-[#fff888] p-10 m-5 items-center hover:scale-105 transition duration-300 ease-in-out">

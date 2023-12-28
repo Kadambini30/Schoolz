@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-function Page() {
+function Page({params}) {
     const [formData, setFormData] = useState({
         name: '',
         subject: '',
@@ -14,6 +14,7 @@ function Page() {
         fees: '',
         institutionName: ''
     });
+    let resid;
 
     const router = useRouter();
 
@@ -21,21 +22,70 @@ function Page() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission logic here
         console.log(formData);
+
+        console.log("params.teacher");
+        console.log(params.teacher)
+
+        const responseget = await fetch(`http://localhost:3000/api/teacherregister/${params.teacher}`);
+        console.log("params.teacher");
+        console.log(params.teacher)
+        const teacherdataget = await responseget.json();
+        console.log("teacherdataget");
+        console.log(teacherdataget.result._id);
+        formData.username = teacherdataget.result._id;
+
+        console.log('formData', formData);
+
         let res = await fetch('http://localhost:3000/api/forms', {
             method: 'POST',
             body: JSON.stringify(formData)
         });
         res = await res.json();
-        if(res.success) {
-            alert('Teacher added successfully');
+        if (res && res.data) {
+            resid = res.data._id;
+
+        console.log(resid)
+        } else {
+            console.error('Invalid response format');
         }
 
+        if (res && res.success) {
+            console.log('Teacher added successfully');
+        }
+
+        console.log("params.teacher");
+        console.log(params.teacher)
+
+        // const responseget = await fetch(`http://localhost:3000/api/teacherregister/${params.teacher}`);
+        // console.log("params.teacher");
+        // console.log(params.teacher)
+        // const teacherdataget = await responseget.json();
+        console.log("teacherdataget");
+        console.log(teacherdataget);
+        console.log(teacherdataget.result.course);
+        teacherdataget.result.course.push(resid);
+        teacherdataget.result.course = [...new Set(teacherdataget.result.course)];
+        console.log("teacherdataget.result.course");
+        console.log(teacherdataget.result.course);
+        // // Append new course id to teacherdataget.result.course
+        // teacherdataget.result.course.push(resid);
+        // console.log("teacherdataget.result.course");
+        // console.log(teacherdataget.result.course);
+
+        // // PUT request to update teacher data
+        await fetch(`http://localhost:3000/api/teacherregister/${params.teacher}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                course: teacherdataget.result.course,
+            })
+        });
+
         // Redirect to /teacher/submitpage
-        router.push('/teacher/submitpage');
+        router.push('/teacherLogin/dingdong/submitpage');
     };
 
     return (
@@ -70,10 +120,10 @@ function Page() {
                 <input type="text" name="address" value={formData.address} onChange={handleChange} autoComplete="address" />
             </label>
             <br />
-            <label>
+            {/* <label>
                 Username:
                 <input type="text" name="username" value={formData.username} onChange={handleChange} autoComplete="username" />
-            </label>
+            </label> */}
             <br />
             <label>
                 Fees:

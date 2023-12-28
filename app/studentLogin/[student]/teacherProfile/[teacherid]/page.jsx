@@ -6,6 +6,7 @@ export default function TeacherId({ params }) {
   const [teacherData, setTeacherData] = useState(null);
 
   useEffect(() => {
+    // Fetch teacher details
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -24,7 +25,7 @@ export default function TeacherId({ params }) {
 
   const [course, setCourse] = useState([]);
 
-
+  //update course
   const handleApply = async (e) => {
     e.preventDefault();
 

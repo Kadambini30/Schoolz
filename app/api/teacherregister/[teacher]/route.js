@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import user from "../../../../lib/model/studentuser";
+import user from "../../../../lib/model/teacheruser";
 import { connect } from "../../../../lib/db";
 
 export async function GET(request, content) {
-    const studentid = content.params.student;
-    const filter = { email: studentid };
+    const teacherid = content.params.teacher;
+    const filter = { email: teacherid };
 
     try {
         await connect();
@@ -19,8 +19,8 @@ export async function GET(request, content) {
 }
 
 export async function PUT(request, content) {
-    const studentid = content.params.student;
-    const filter = { email: studentid };
+    const teacherid = content.params.teacher;
+    const filter = { email: teacherid };
     const payload = await request.json();
     console.log("payload");
     console.log(payload);
