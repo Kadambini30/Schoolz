@@ -15,7 +15,7 @@ function Page({ params }) {
           `http://localhost:3000/api/studentregister/${params.student}`
         );
         const data = await response.json();
-
+          console.log("abhi ka h ",data.result);
         // Fetch details of enrolled teacher courses
         const teacherCourses = data.result.course;
         console.log("Enrolled Teacher Courses:");
@@ -28,7 +28,7 @@ function Page({ params }) {
               `http://localhost:3000/api/forms/${teacherId}`
             );
             const teacherData = await teacherResponse.json();
-            console.log(teacherData.result);
+            console.log("teacher data result: ",teacherData.result);
             return {
               id: teacherId,
               name: teacherData.result.name,
@@ -40,7 +40,7 @@ function Page({ params }) {
 
         // Update the carouselData state with the fetched details
         setCarouselData(teacherCourseDetails);
-        console.log(carouselData);
+        console.log("ye h corousel data",carouselData);
       } catch (error) {
         console.log(error);
       }
@@ -64,10 +64,8 @@ function Page({ params }) {
         {carouselData.map((item, index) => (
           <Link
             href={{
-              pathname: `${presenturl}/class`,
-              query: {
-                teacherid: item.userid,
-                teachername: item.name,
+              pathname: `${presenturl}/${item.id}`,
+              query: {course: JSON.stringify(item)
               },
             }}
             key={index}

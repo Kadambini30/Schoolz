@@ -6,11 +6,13 @@ function Page({params}) {
     const [formData, setFormData] = useState({
         name: '',
         subject: '',
-        dob: '',
-        email: '',
-        password: '',
         address: '',
         username: '',
+        messages:{
+            message:[],
+            sender:[],
+            time:[]
+        },
         fees: '',
         institutionName: ''
     });
@@ -95,11 +97,11 @@ function Page({params}) {
                 <input type="text" name="name" value={formData.name} onChange={handleChange} autoComplete="name" />
             </label>
             <br />
-            <label>
+            {/* <label>
                 DOB:
                 <input type="text" name="dob" value={formData.dob} onChange={handleChange} autoComplete="bday" />
-            </label>
-            <br />
+            </label> */}
+            {/* <br />
             <label>
                 Email:
                 <input type="text" name="email" value={formData.email} onChange={handleChange} autoComplete="email" />
@@ -109,7 +111,7 @@ function Page({params}) {
                 Password:
                 <input type="password" name="password" value={formData.password} onChange={handleChange} autoComplete="new-password" />
             </label>
-            <br />
+            <br /> */}
             <label>
                 Subject:
                 <input type="text" name="subject" value={formData.subject} onChange={handleChange} autoComplete="subject" />

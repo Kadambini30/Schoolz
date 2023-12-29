@@ -26,7 +26,7 @@ function page({params}){
   };
   const filteredPeople = teachers.filter(
     (person) =>
-      person.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (person.name.toLowerCase().includes(searchTerm.toLowerCase()) || person.subject.toLowerCase().includes(searchTerm.toLowerCase())) &&
       (person.distance <= searchDistance || !searchDistance)
   );
   return (

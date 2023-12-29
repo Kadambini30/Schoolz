@@ -44,12 +44,12 @@ function Page({ params }) {
       {teacherdataget && <p>Hello {teacherdataget.result.name}</p>}
     {courseDetails.map((course) => (
         <Link href={{
-            pathname: `/teacherLogin/${params.teacher}/${course.id}`,
+            pathname: `/teacherLogin/${params.teacher}/${course._id}`,
             query: { course: JSON.stringify(course) }
-        }} className='flex flex-col bg-red-200 p-5 m-5' key={course.id}>
+        }} className='flex flex-col bg-red-200 p-5 m-5' key={course._id}>
             <h3>{course.name}</h3>
             <p>{course.subject}</p>
-            <p>{course.id}</p>
+            <p>{course._id}</p>
         </Link>
     ))}
       <Link href={`/teacherLogin/${params.teacher}/formPage`}>

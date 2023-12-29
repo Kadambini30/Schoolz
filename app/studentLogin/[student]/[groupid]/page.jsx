@@ -1,14 +1,11 @@
 'use client'
-import { set } from 'mongoose';
-import React, { useState, useEffect , useRef, use} from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 
 const page = (query) => {
     console.log(query);
     const courseData = JSON.parse(query.searchParams.course);
     const [currentPage, setCurrentPage] = useState('home');
     const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
-    const [enrolledStudent, setEnrolledStudent] = useState([]);
     let data;
     const scrollRef = useRef();
     useEffect(() => {
@@ -16,29 +13,6 @@ const page = (query) => {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:3000/api/studentregister/`);
-                const studentdata = await response.json();
-    
-                console.log("Student Data: ", studentdata.result, courseData._id);
-    
-                // Filter students based on courseData._id
-                const enrolledStudents = studentdata.result.filter(student => student.course.includes(courseData._id));
-    
-                console.log("Enrolled Students: ", enrolledStudents);
-    
-                // Now you can use enrolledStudents as needed
-                setEnrolledStudent(enrolledStudents);
-            } catch (error) {
-                console.error("Error fetching student data:", error);
-            }
-        };
-    
-        fetchData();
-    }, [courseData._id]);
-
     // Retrieve the last visited page from local storage
     useEffect(() => {
         const storedPage = localStorage.getItem('currentPage');
@@ -50,7 +24,7 @@ const page = (query) => {
     // Fetch data on component mount
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`http://localhost:3000/api/forms/${query.params.groups}`);
+            const response = await fetch(`http://localhost:3000/api/forms/${query.params.groupid}`);
             data = await response.json();
             console.log(data);
             setMessages(data.result.messages);
@@ -72,14 +46,8 @@ const page = (query) => {
             sender: "teacher",
             timestamp: timestamp
         };
-        console.log("messages:", messages); // Add this line to check the value of messages
-        let updatedMessages = [];
-        console.log("message length:", messages.length); // Add this line to check the length of messages
-        if (messages.message == 0) {
-            updatedMessages = [message];
-        } else {
-            updatedMessages = [...messages, message];
-        }
+
+        const updatedMessages = [...messages, message];
 
         await fetch(`http://localhost:3000/api/forms/${query.params.groups}`, {
             method: 'PUT',
@@ -97,27 +65,15 @@ const page = (query) => {
             <h1 className='text-center stroke-indigo-500 font-bold text-4xl'>{courseData.name}</h1>
 
             <div className='flex flex-row justify-evenly'>
-                <button className='p-5 m-3 bg-red-200' onClick={() => handleSectionChange('home')}>Participants</button>
+                <button className='p-5 m-3 bg-red-200' onClick={() => handleSectionChange('home')}>Home</button>
                 <button className='p-5 m-3 bg-red-200' onClick={() => handleSectionChange('file')}>File</button>
                 <button className='p-5 m-3 bg-red-200' onClick={() => handleSectionChange('message')}>Message</button>
             </div>
 
             {currentPage === 'home' && (
                 <div>
-                    <h2>Participants</h2>
+                    <h2>Home Section</h2>
                     {/* Add your home section content here */}
-                    <div className='px-2 py-3 bg-gray-400 m-3' >
-                        <p className='text-3xl'>{courseData.institutionName}</p>
-                    </div>
-                    {enrolledStudent.length > 0 && enrolledStudent.map((student, index) => (
-                        <div className='px-2 py-3 bg-gray-400 m-3' key={index} >
-                            <p className='text-3xl'>{student.name}</p>
-                            <p className='text-xs'>Username: {student.email}</p>
-                            {/* <p className='text-xs'>Phone: {student.phone}</p>
-                            <p className='text-xs'>Address: {student.address}</p> */}
-                        </div>
-                    ))}
-
                 </div>
             )}
 
@@ -131,15 +87,7 @@ const page = (query) => {
             {currentPage === 'message' && (
                 <div className=' bg-red-100 h-[83vh] w-[80vw]'>
                     <h2>Message Section</h2>
-                    <div>
-                        <input
-                            type='text'
-                            value={newMessage}
-                            onChange={(e) => setNewMessage(e.target.value)}
-                            placeholder='Enter your message'
-                        />
-                        <button onClick={handleSendMessage}>Send</button>
-                    </div>
+                    
                     <div className='overflow-y-scroll scroll-m-4 h-[70vh]' ref={scrollRef}>
                         {messages.length > 0 && messages.map((message, index) => (
                             <div className='px-2 py-3 bg-gray-400 m-3' key={index} >
