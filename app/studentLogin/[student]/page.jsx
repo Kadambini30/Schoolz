@@ -2,11 +2,28 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import {signOut} from "next-auth/react";
+
+
+
 
 let presenturl= "";
 function Page({ params }) {
+  const {data:session}= useSession();
+  console.log("session");
+  console.log(session?.user?.name);
+  if(!session?.user?.email || session?.user?.email!=params.student)
+  return(
+    <div className='text-center p-10 outline justify-center flex flex-col m-40'>
+      <h1>Access Denied</h1>
+      <button onClick={()=>signOut()} className='bg-red-700 text-white w-32 p-4 mx-auto font-bold'>Logout</button>
+    </div>
+  )
    presenturl = `http://localhost:3000/studentLogin/${params.student}`;
   const [carouselData, setCarouselData] = useState([]);
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +71,10 @@ function Page({ params }) {
     <main className="">
       {/* student navbar */}
       <div className="flex bg-[#c6f0f5] justify-end p-4">
-        <Link href={`/studentLogin/account`}className="">
+        <Link href={{
+          pathname:`/studentLogin/account`,
+            query: { student: params.student },
+          }}className="">
           Account
         </Link>
       </div>

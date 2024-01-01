@@ -1,0 +1,91 @@
+Date : 2023-12-30 21:59:46
+Directory : /Users/rudreshpandey/Desktop/WebD/Working/schoolz
+Total : 30 files,  939 codes, 389 comments, 135 blanks, all 1463 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         19 |        683 |        287 |        110 |      1,080 |
+| JavaScript     |          8 |        138 |        102 |         25 |        265 |
+| JSON           |          2 |        120 |          0 |          0 |        120 |
+| TypeScript     |          1 |         -2 |          0 |          0 |         -2 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                             | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                |         30 |        939 |        389 |        135 |      1,463 |
+| . (Files)                                                                                                        |          2 |        120 |          0 |          0 |        120 |
+| app                                                                                                              |         21 |        618 |        381 |        119 |      1,118 |
+| app/api                                                                                                          |          5 |         90 |         94 |         23 |        207 |
+| app/api/auth                                                                                                     |          1 |          9 |         92 |         17 |        118 |
+| app/api/auth/[...nextauth]                                                                                       |          1 |          9 |         92 |         17 |        118 |
+| app/api/studentregister                                                                                          |          1 |          2 |          0 |          0 |          2 |
+| app/api/teacherExist                                                                                             |          1 |         17 |          0 |          0 |         17 |
+| app/api/teacherregister                                                                                          |          2 |         62 |          2 |          6 |         70 |
+| app/api/teacherregister (Files)                                                                                  |          1 |         29 |          0 |          3 |         32 |
+| app/api/teacherregister/[teacher]                                                                                |          1 |         33 |          2 |          3 |         38 |
+| app/studentLogin                                                                                                 |          6 |        268 |        -25 |         14 |        257 |
+| app/studentLogin/[student]                                                                                       |          5 |         99 |        -27 |          6 |         78 |
+| app/studentLogin/[student] (Files)                                                                               |          1 |         15 |        -33 |          0 |        -18 |
+| app/studentLogin/[student]/[groupid]                                                                             |          1 |         88 |          5 |         14 |        107 |
+| app/studentLogin/[student]/class                                                                                 |          2 |        -54 |          0 |         -8 |        -62 |
+| app/studentLogin/[student]/teacherProfile                                                                        |          1 |         50 |          1 |          0 |         51 |
+| app/studentLogin/[student]/teacherProfile/[teacherid]                                                            |          1 |         50 |          1 |          0 |         51 |
+| app/studentLogin/account                                                                                         |          1 |        169 |          2 |          8 |        179 |
+| app/teacher                                                                                                      |          2 |       -101 |         -2 |        -11 |       -114 |
+| app/teacher (Files)                                                                                              |          1 |        -90 |         -2 |         -8 |       -100 |
+| app/teacher/submitpage                                                                                           |          1 |        -11 |          0 |         -3 |        -14 |
+| app/teacherLogin                                                                                                 |          8 |        361 |        314 |         93 |        768 |
+| app/teacherLogin (Files)                                                                                         |          2 |         24 |         92 |         14 |        130 |
+| app/teacherLogin/[teacher]                                                                                       |          4 |        306 |        222 |         70 |        598 |
+| app/teacherLogin/[teacher] (Files)                                                                               |          1 |         59 |        183 |         31 |        273 |
+| app/teacherLogin/[teacher]/[groups]                                                                              |          1 |        131 |          9 |         19 |        159 |
+| app/teacherLogin/[teacher]/formPage                                                                              |          1 |        105 |         30 |         17 |        152 |
+| app/teacherLogin/[teacher]/submitpage                                                                            |          1 |         11 |          0 |          3 |         14 |
+| app/teacherLogin/account                                                                                         |          1 |         16 |          0 |          5 |         21 |
+| app/teacherLogin/register                                                                                        |          1 |         15 |          0 |          4 |         19 |
+| components                                                                                                       |          3 |        155 |          0 |         14 |        169 |
+| lib                                                                                                              |          4 |         46 |          8 |          2 |         56 |
+| lib (Files)                                                                                                      |          1 |         -2 |          0 |          0 |         -2 |
+| lib/model                                                                                                        |          3 |         48 |          8 |          2 |         58 |
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                         | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/auth/[...nextauth]/route.js                            | JavaScript     |          9 |         92 |         17 |        118 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/studentregister/route.js                               | JavaScript     |          2 |          0 |          0 |          2 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherExist/route.js                                  | JavaScript     |         17 |          0 |          0 |         17 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherregister/[teacher]/route.js                     | JavaScript     |         33 |          2 |          3 |         38 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherregister/route.js                               | JavaScript     |         29 |          0 |          3 |         32 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/[groupid]/page.jsx                  | JavaScript JSX |         88 |          5 |         14 |        107 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/class/layout.jsx                    | JavaScript JSX |        -36 |          0 |         -3 |        -39 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/class/page.jsx                      | JavaScript JSX |        -18 |          0 |         -5 |        -23 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/page.jsx                            | JavaScript JSX |         15 |        -33 |          0 |        -18 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/teacherProfile/[teacherid]/page.jsx | JavaScript JSX |         50 |          1 |          0 |         51 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/account/page.jsx                              | JavaScript JSX |        169 |          2 |          8 |        179 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacher/page.jsx                                           | JavaScript JSX |        -90 |         -2 |         -8 |       -100 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacher/submitpage/page.jsx                                | JavaScript JSX |        -11 |          0 |         -3 |        -14 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/[groups]/page.jsx                   | JavaScript JSX |        131 |          9 |         19 |        159 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/formPage/page.jsx                   | JavaScript JSX |        105 |         30 |         17 |        152 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/page.jsx                            | JavaScript JSX |         59 |        183 |         31 |        273 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/submitpage/page.jsx                 | JavaScript JSX |         11 |          0 |          3 |         14 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/account/page.jsx                              | JavaScript JSX |         16 |          0 |          5 |         21 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/layout.jsx                                    | JavaScript JSX |         14 |          0 |          3 |         17 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/page.jsx                                      | JavaScript JSX |         10 |         92 |         11 |        113 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/register/page.jsx                             | JavaScript JSX |         15 |          0 |          4 |         19 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/LoginFormTeacher.jsx                                | JavaScript JSX |         63 |          0 |          5 |         68 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/RegisterForm.jsx                                    | JavaScript JSX |          0 |          0 |          2 |          2 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/RegisterFormTeacher.jsx                             | JavaScript JSX |         92 |          0 |          7 |         99 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/auth.ts                                                    | TypeScript     |         -2 |          0 |          0 |         -2 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/studentuser.js                                       | JavaScript     |         30 |          0 |          0 |         30 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/teacherform.js                                       | JavaScript     |         -2 |          8 |          1 |          7 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/teacheruser.js                                       | JavaScript     |         20 |          0 |          1 |         21 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/package-lock.json                                              | JSON           |        119 |          0 |          0 |        119 |
+| /Users/rudreshpandey/Desktop/WebD/Working/schoolz/package.json                                                   | JSON           |          1 |          0 |          0 |          1 |
+| Total                                                                                                            |                |        939 |        389 |        135 |      1,463 |
++------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

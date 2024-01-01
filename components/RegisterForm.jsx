@@ -11,8 +11,9 @@ function RegisterForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, seterror ] = useState('');
-    const [course, setCourse] = useState([]);
-    console.log({course});
+    
+
+
     const router = useRouter();
     const handleSubmit = async(e) => {
         console.log("Submitted");
@@ -36,14 +37,15 @@ function RegisterForm() {
                 seterror('User already exists');
                 return;
             }
-
+            console.log("User Registration" , name, email, password)
             const res = await fetch('/api/studentregister', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ name, email, password,course})
+                body: JSON.stringify({ name, email, password})
             });
+            console.log("RESLULT : ",res);
             if (res.ok) {
                 const form = e.target;
                 form.reset();

@@ -41,6 +41,10 @@ function Page({ params }) {
   console.log("teacherdataget.result.name" , teacherdataget)
   return (
     <div>
+      <Link href={{pathname:`/teacherLogin/account`,
+    query:{ teacher: params.teacher}}}>
+        Account 
+      </Link>
       {teacherdataget && <p>Hello {teacherdataget.result.name}</p>}
     {courseDetails.map((course) => (
         <Link href={{

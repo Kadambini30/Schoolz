@@ -4,6 +4,8 @@ import Link from "next/link";
 
 export default function TeacherId({ params }) {
   const [teacherData, setTeacherData] = useState(null);
+  const [course, setCourse] = useState([]);
+  const [enrollClicked, setEnrollClicked] = useState(0);
 
   useEffect(() => {
     // Fetch teacher details
@@ -23,34 +25,52 @@ export default function TeacherId({ params }) {
     fetchData();
   }, [params.teacherid]);
 
-  const [course, setCourse] = useState([]);
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/studentregister/${params.student}`
+        );
+        const data = await response.json();
+        console.log("DATA: ", data);
+        setCourse(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchStudentData();
+  }, [enrollClicked]);
 
-  //update course
+  // Update course
   const handleApply = async (e) => {
     e.preventDefault();
+    setEnrollClicked(enrollClicked + 1);
 
-    const responseget = await fetch(`http://localhost:3000/api/studentregister/${params.student}`);
-    const studentdataget = await responseget.json();
+    const studentdataget = course;
     console.log("studentdataget");
-    console.log(studentdataget.result.course);
-    console.log("studentdataget");
+    console.log("STUDENT DATA GET : ", studentdataget);
 
     const updatedCourse = studentdataget.result.course.includes(params.teacherid)
       ? studentdataget.result.course.filter((id) => id !== params.teacherid)
       : [...studentdataget.result.course, params.teacherid];
-console.log("updatedCourse");
-console.log(updatedCourse);
-    const response = await fetch(`http://localhost:3000/api/studentregister/${params.student}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        course: updatedCourse,
-      }),
-    });
+    console.log("updatedCourse");
+    console.log(updatedCourse);
+
+    const response = await fetch(
+      `http://localhost:3000/api/studentregister/${params.student}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          course: updatedCourse,
+        }),
+      }
+    );
     const studentdata = await response.json();
     console.log(studentdata.result);
-    // setTeacherData(data.result);
   };
 
+  console.log("course");
+  console.log(course);
 
   return (
     <div>
@@ -66,13 +86,43 @@ console.log(updatedCourse);
             <p>{teacherData.dob}</p>
             <p>{teacherData.institutionName}</p>
             <p>{teacherData.fees}</p>
-            <Link
-              type="button"
-              className="outline w-40 bg-red-300"
-              href={`/studentLogin/${params.student}/teacherProfile/${params.teacherid}/apply`} onClick={handleApply}
-            >
-              Enroll
-            </Link>
+            {course.result && course.result.course.includes(params.teacherid) ? (
+              <div>
+                <Link
+                  type="button"
+                  className="outline w-40 bg-red-300"
+                  href={`/studentLogin/${params.student}/teacherProfile/${params.teacherid}/unenroll`}
+                  onClick={async (e) => {
+                    await handleApply(e);
+                    window.location.reload();
+                  }}
+                >
+                  Unenroll
+                </Link>
+                <Link
+                  type="button"
+                  className="outline w-40 bg-red-300"
+                  href={{
+                    pathname: `/studentLogin/${params.student}/${params.teacherid}`,
+                    query: { course: JSON.stringify(teacherData) },
+                  }}
+                >
+                  Go to messages
+                </Link>
+              </div>
+            ) : (
+              <Link
+                type="button"
+                className="outline w-40 bg-red-300"
+                href={`/studentLogin/${params.student}/teacherProfile/${params.teacherid}/apply`}
+                onClick={async (e) => {
+                  await handleApply(e);
+                  window.location.reload();
+                }}
+              >
+                Enroll
+              </Link>
+            )}
           </div>
         )}
       </div>

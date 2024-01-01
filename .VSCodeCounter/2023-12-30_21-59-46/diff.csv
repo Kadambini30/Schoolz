@@ -1,0 +1,32 @@
+"filename", "language", "JavaScript", "JSON", "JavaScript JSX", "TypeScript", "comment", "blank", "total"
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/auth/[...nextauth]/route.js", "JavaScript", 9, 0, 0, 0, 92, 17, 118
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/studentregister/route.js", "JavaScript", 2, 0, 0, 0, 0, 0, 2
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherExist/route.js", "JavaScript", 17, 0, 0, 0, 0, 0, 17
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherregister/[teacher]/route.js", "JavaScript", 33, 0, 0, 0, 2, 3, 38
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/api/teacherregister/route.js", "JavaScript", 29, 0, 0, 0, 0, 3, 32
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/[groupid]/page.jsx", "JavaScript JSX", 0, 0, 88, 0, 5, 14, 107
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/class/layout.jsx", "JavaScript JSX", 0, 0, -36, 0, 0, -3, -39
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/class/page.jsx", "JavaScript JSX", 0, 0, -18, 0, 0, -5, -23
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/page.jsx", "JavaScript JSX", 0, 0, 15, 0, -33, 0, -18
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/[student]/teacherProfile/[teacherid]/page.jsx", "JavaScript JSX", 0, 0, 50, 0, 1, 0, 51
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/studentLogin/account/page.jsx", "JavaScript JSX", 0, 0, 169, 0, 2, 8, 179
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacher/page.jsx", "JavaScript JSX", 0, 0, -90, 0, -2, -8, -100
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacher/submitpage/page.jsx", "JavaScript JSX", 0, 0, -11, 0, 0, -3, -14
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/[groups]/page.jsx", "JavaScript JSX", 0, 0, 131, 0, 9, 19, 159
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/formPage/page.jsx", "JavaScript JSX", 0, 0, 105, 0, 30, 17, 152
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/page.jsx", "JavaScript JSX", 0, 0, 59, 0, 183, 31, 273
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/[teacher]/submitpage/page.jsx", "JavaScript JSX", 0, 0, 11, 0, 0, 3, 14
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/account/page.jsx", "JavaScript JSX", 0, 0, 16, 0, 0, 5, 21
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/layout.jsx", "JavaScript JSX", 0, 0, 14, 0, 0, 3, 17
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/page.jsx", "JavaScript JSX", 0, 0, 10, 0, 92, 11, 113
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/app/teacherLogin/register/page.jsx", "JavaScript JSX", 0, 0, 15, 0, 0, 4, 19
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/LoginFormTeacher.jsx", "JavaScript JSX", 0, 0, 63, 0, 0, 5, 68
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/RegisterForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 2, 2
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/components/RegisterFormTeacher.jsx", "JavaScript JSX", 0, 0, 92, 0, 0, 7, 99
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/auth.ts", "TypeScript", 0, 0, 0, -2, 0, 0, -2
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/studentuser.js", "JavaScript", 30, 0, 0, 0, 0, 0, 30
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/teacherform.js", "JavaScript", -2, 0, 0, 0, 8, 1, 7
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/lib/model/teacheruser.js", "JavaScript", 20, 0, 0, 0, 0, 1, 21
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/package-lock.json", "JSON", 0, 119, 0, 0, 0, 0, 119
+"/Users/rudreshpandey/Desktop/WebD/Working/schoolz/package.json", "JSON", 0, 1, 0, 0, 0, 0, 1
+"Total", "-", 138, 120, 683, -2, 389, 135, 1463

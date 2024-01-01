@@ -85,9 +85,6 @@ function Page({params}) {
                 course: teacherdataget.result.course,
             })
         });
-
-        // Redirect to /teacher/submitpage
-        router.push('/teacherLogin/dingdong/submitpage');
     };
 
     return (

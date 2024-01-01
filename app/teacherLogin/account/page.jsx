@@ -16,7 +16,6 @@ const Page = (creds) => {
     state:'',
     pincode:'',
     location:'',
-    className:'',
     school:'',
   });
   const picChange = (e) => {
@@ -36,25 +35,15 @@ const Page = (creds) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 };
-const studentid = creds.searchParams.student;
-console.log(studentid)
-if (typeof studentid === 'undefined') {
-  return (
-    <button
-        onClick={() => signOut()}
-        className="bg-red-700 text-white w-32 p-4 mx-auto font-bold mt-4"
-      >
-        Logout
-      </button>
-  );
-}
+const teacherid = creds.searchParams.teacher;
+console.log(teacherid)
 useEffect(() => {
   const fetchData = async () => {
       try {
-          const response = await fetch(`http://localhost:3000/api/studentregister/${studentid}`);
+          const response = await fetch(`http://localhost:3000/api/teacherregister/${teacherid}`);
           const data = await response.json();
           console.log("data.result")
-          console.log(studentid)
+          console.log(teacherid)
           console.log(data.result);
           setFormData(data.result);
       } catch (error) { 
@@ -68,23 +57,29 @@ const handleSubmit = async (e) => {
    e.preventDefault();
     // Handle form submission logic here
     console.log(formData);
-    console.log(studentid)
+    console.log(teacherid)
 
-    const responseget = await fetch(`http://localhost:3000/api/studentregister/${studentid}`,{
+    const responseget = await fetch(`http://localhost:3000/api/teacherregister/${teacherid}`,{
       method: 'PUT',
       body: JSON.stringify({city: formData.city,
       state: formData.state, address: formData.address, location: formData.location, phone: formData.phone, className: formData.className, school: formData.school, dob: formData.dob, pincode: formData.pincode, profilepic: formData.profilepic})
     });
-    // console.log(params.student)
-    const studentdataget = await responseget.json();
-    console.log("studentdataget");
-    console.log(studentdataget);
+    // console.log(params.teacher)
+    const teacherdataget = await responseget.json();
+    console.log("teacherdataget");
+    console.log(teacherdataget);
 
 }
-
-
-
-
+if (typeof studentid === 'undefined') {
+  return (
+    <button
+        onClick={() => signOut()}
+        className="bg-red-700 text-white w-32 p-4 mx-auto font-bold mt-4"
+      >
+        Logout
+      </button>
+  );
+}
 console.log("formData", formData);
   return (
     <div className="text-center p-10 outline justify-center flex flex-col m-40">
@@ -182,7 +177,7 @@ console.log("formData", formData);
           />
         </label>
         <br />
-        <label>
+        {/* <label>
           Class:
           <input
             type="text"
@@ -192,9 +187,9 @@ console.log("formData", formData);
             autoComplete="className"
           />
         </label>
-        <br />
+        <br /> */}
         <label>
-          School:
+          Institution Name:
           <input
             type="text"
             name="school"
@@ -225,3 +220,25 @@ export default Page;
 
 
 
+
+
+// 'use client'
+// import { useState } from 'react';
+// import { signOut } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
+
+// const Page = () => {
+
+//   const {data:session}= useSession();
+
+//   return (
+//     <div className='text-center p-10 outline justify-center flex flex-col m-40'>
+//       <h1>Welcome, {session?.user?.name}!</h1>
+//       <p>id {session?.user?._id}</p>
+//       <p>Email: {session?.user?.email}</p>
+//       <button onClick={()=>signOut()} className='bg-red-700 text-white w-32 p-4 mx-auto font-bold'>Logout</button>
+//     </div>
+//   );
+// };
+
+// export default Page;
