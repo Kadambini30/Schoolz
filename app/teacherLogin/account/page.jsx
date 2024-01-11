@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 
 const Page = (creds) => {
   const {data:session}= useSession();
+  console.log("session : ",session)
   console.log("creds : ",creds)
   const [formData, setFormData] = useState({
     dob:'',
@@ -70,7 +71,7 @@ const handleSubmit = async (e) => {
     console.log(teacherdataget);
 
 }
-if (typeof studentid === 'undefined') {
+if (typeof teacherid === 'undefined') {
   return (
     <button
         onClick={() => signOut()}

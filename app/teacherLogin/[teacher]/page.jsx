@@ -1,8 +1,20 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import {useSession} from 'next-auth/react';
+import {signOut} from 'next-auth/react';
 
 function Page({ params }) {
+    const {data:session}= useSession();
+    console.log("session");
+    console.log(session?.user?.name);
+    if(!session?.user?.email || session?.user?.email!=params.teacher)
+    return(
+      <div className='text-center p-10 outline justify-center flex flex-col m-40'>
+        <h1>Access Denied</h1>
+        <button onClick={()=>signOut()} className='bg-red-700 text-white w-32 p-4 mx-auto font-bold'>Logout</button>
+      </div>
+    )
   const [teacherdataget, setTeacherDataGet] = useState(null);
   const [courseDetails, setCourseDetails] = useState([]);
 
@@ -49,7 +61,7 @@ function Page({ params }) {
     {courseDetails.map((course) => (
         <Link href={{
             pathname: `/teacherLogin/${params.teacher}/${course._id}`,
-            query: { course: JSON.stringify(course) }
+            query: { courseid: JSON.stringify(course._id) }
         }} className='flex flex-col bg-red-200 p-5 m-5' key={course._id}>
             <h3>{course.name}</h3>
             <p>{course.subject}</p>

@@ -3,13 +3,15 @@ import React, { useState, useEffect, useRef, use } from "react";
 
 const page = (query) => {
   console.log(query);
-  const courseData = JSON.parse(query.searchParams.course);
+  const [courseData, setCourseData] = useState();
   const [currentPage, setCurrentPage] = useState("home");
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [enrolledStudent, setEnrolledStudent] = useState([]);
   let data;
   const scrollRef = useRef();
+
+  // Scroll to the bottom of the chat window on new message
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -17,27 +19,26 @@ const page = (query) => {
   }, [messages]);
 
   useEffect(() => {
-    const storedPage = localStorage.getItem('currentPage');
+    const fetchCourseData = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/forms/${query.params.groups}`
+      );
+      data = await response.json();
+      console.log("NEW COURSE DATA = ",data);
+      setCourseData( data.result);
+    };
+    fetchCourseData();
+  }, []);
+
+  // Retrieve the last visited page from local storage
+  useEffect(() => {
+    const storedPage = localStorage.getItem("currentPage");
     if (storedPage) {
       setCurrentPage(storedPage);
     }
   }, []);
 
-
-  // Helper function to convert data URI to Blob
-  function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(",")[1]);
-    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const uint8Array = new Uint8Array(arrayBuffer);
-
-    for (let i = 0; i < byteString.length; i++) {
-      uint8Array[i] = byteString.charCodeAt(i);
-    }
-
-    return new Blob([arrayBuffer], { type: mimeString });
-  }
-
+  // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,14 +47,14 @@ const page = (query) => {
         );
         const studentdata = await response.json();
 
-        console.log("Student Data: ", studentdata.result, courseData._id);
+        // console.log("Student Data: ", studentdata.result, query.params.groups);
 
         // Filter students based on courseData._id
         const enrolledStudents = studentdata.result.filter((student) =>
-          student.course.includes(courseData._id)
+          student.course.includes(query.params.groups)
         );
 
-        console.log("Enrolled Students: ", enrolledStudents);
+        // console.log("Enrolled Students: ", enrolledStudents);
 
         // Now you can use enrolledStudents as needed
         setEnrolledStudent(enrolledStudents);
@@ -63,7 +64,7 @@ const page = (query) => {
     };
 
     fetchData();
-  }, [courseData._id]);
+  }, [query.params.groups]);
 
   const picChange = (e) => {
     console.log(e);
@@ -78,8 +79,6 @@ const page = (query) => {
     };
   };
 
-  // Retrieve the last visited page from local storage
-  console.log("Scroll ref ", scrollRef.current);
   // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
@@ -94,12 +93,14 @@ const page = (query) => {
     fetchData();
   }, [messages, query.params.groups]);
 
+  // Update the current page when the button is clicked
   const handleSectionChange = (section) => {
     setCurrentPage(section);
     // Save the current page to local storage
     localStorage.setItem("currentPage", section);
   };
 
+  // Send message to the database
   const handleSendMessage = async () => {
     const timestamp = new Date().toLocaleString();
     const message = {
@@ -128,9 +129,10 @@ const page = (query) => {
   };
 
   return (
+
     <div className="overflow-y-hidden justify-center flex flex-col items-center">
       <h1 className="text-center stroke-indigo-500 font-bold text-4xl">
-        {courseData.name}
+        {courseData && courseData.name}
       </h1>
 
       <div className="flex flex-row justify-evenly">
@@ -154,10 +156,11 @@ const page = (query) => {
         </button>
       </div>
 
-      {currentPage === "home" && (
+      {currentPage === "home" && courseData && (
         <div>
+          hello
           <h2>Participants</h2>
-          {/* Add your home section content here */}
+          Add your home section content here
           <div className="px-2 py-3 bg-gray-400 m-3">
             <p className="text-3xl">{courseData.institutionName}</p>
           </div>
@@ -166,8 +169,6 @@ const page = (query) => {
               <div className="px-2 py-3 bg-gray-400 m-3" key={index}>
                 <p className="text-3xl">{student.name}</p>
                 <p className="text-xs">Username: {student.email}</p>
-                {/* <p className='text-xs'>Phone: {student.phone}</p>
-                            <p className='text-xs'>Address: {student.address}</p> */}
               </div>
             ))}
         </div>

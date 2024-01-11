@@ -30,9 +30,12 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p5 rounded-lg border-t-4 border-yellow-400">
-        <h1 className="font-bold my-4 text-xl">Login</h1>
+    <div
+      className="grid place-items-center h-screen bg-cover bg-center bg"
+      style={{ backgroundImage: "url('/learning.jpeg')" }}
+    >
+      <div className="shadow-lg p-5 rounded-lg border-t-4 border-yellow-400 backdrop-filter backdrop-blur-lg text-center bg-gray-950 bg-opacity-30">
+        <h1 className="font-bold my-4 text-5xl text-yellow-400">Login</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 px-4 py-3">
           <input
             type="text"
@@ -55,7 +58,7 @@ const LoginForm = () => {
           {error && (        <div className="flex flex-col gap-3 px-4 py-3">{error}</div>
 )}
         <Link href={"studentLogin/register"}>
-            Dont have an account? Register here.
+            Dont have an account? <span className="underline">Register here</span>.
             </Link>
             </form>
 

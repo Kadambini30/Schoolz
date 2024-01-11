@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import {signOut} from "next-auth/react";
 
-
-
-
 let presenturl= "";
 function Page({ params }) {
   const {data:session}= useSession();

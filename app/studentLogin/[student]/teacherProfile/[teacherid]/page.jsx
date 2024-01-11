@@ -104,7 +104,7 @@ export default function TeacherId({ params }) {
                   className="outline w-40 bg-red-300"
                   href={{
                     pathname: `/studentLogin/${params.student}/${params.teacherid}`,
-                    query: { course: JSON.stringify(teacherData) },
+                    query: { courseid: JSON.stringify(teacherData._id) },
                   }}
                 >
                   Go to messages
