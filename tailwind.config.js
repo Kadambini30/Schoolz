@@ -18,7 +18,7 @@ module.exports = {
         bg:"#9A62D7",
       },
       fontFamily: {
-
+        merriweather: "Merriweather, serif",
         jacques: "Jacques Francois, serif",
         lalezar: "Lalezar, system-ui",
       },
